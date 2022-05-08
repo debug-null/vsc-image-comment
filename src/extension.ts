@@ -41,15 +41,39 @@ export function activate(context: vscode.ExtensionContext) {
     console.log("选中的文本是:", text);
     vscode.window.showErrorMessage(text);
 
-    let savePath = utils.getTmpFolder();
-    let newSavePath = path.resolve(savePath, `pic_${new Date().getTime()}.png`);
-    console.log("🚀 ~ file: extension.ts ~ line 71 ~ command ~ newPath", newSavePath);
+	/** 获取剪切板图片 */
+    // let savePath = utils.getTmpFolder();
+    // let newSavePath = path.resolve(savePath, `pic_${new Date().getTime()}.png`);
+    // console.log("🚀 ~ file: extension.ts ~ line 71 ~ command ~ newPath", newSavePath);
 
-    try {
-      let images = await utils.getPasteImage(newSavePath);
-      console.log("🚀 ~ file: extension.ts ~ line 61 ~ command ~ images", images);
-    } catch (error) {
-      console.log("🚀 ~ file: extension.ts ~ line 63 ~ command ~ error", error);
+    // try {
+    //   let images = await utils.getPasteImage(newSavePath);
+    //   console.log("🚀 ~ file: extension.ts ~ line 61 ~ command ~ images", images);
+    // } catch (error) {
+    //   console.log("🚀 ~ file: extension.ts ~ line 63 ~ command ~ error", error);
+    // }
+
+    // const editor = vscode.window.activeTextEditor;
+    // console.log("🚀 ~ file: extension.ts ~ line 56 ~ command ~ editor", editor);
+    // console.log( editor.selection.start.line);
+	/** 获取剪切板图片  end*/
+
+    let decorationType = vscode.window.createTextEditorDecorationType({
+      //   backgroundColor: "#f00",
+      //   border: '1px solid red;',
+      outline: "#00FF00 dotted",
+      gutterIconPath: context.asAbsolutePath("images/icon.png")
+    });
+    let activeTextEditor = vscode.window.activeTextEditor;
+    if (activeTextEditor) {
+      /**
+       *   range
+       *  * @param startLine 开始的行数
+       * @param startCharacter 从开始行数的第几个字符开始.
+       * @param endLine 结束的行数.
+       * @param endCharacter 从结束行数的第几个字符结束.
+       */
+      activeTextEditor.setDecorations(decorationType, [new vscode.Range(3, 3, 5, 0)]);
     }
   });
 

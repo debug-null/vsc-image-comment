@@ -33,7 +33,7 @@
 		"keybindings": [
 			{
 				"command": "will.selection",
-				"key": "Alt+z"
+				"key": "cmd+v"
 			}
 		
 		]
