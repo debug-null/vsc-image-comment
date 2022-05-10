@@ -14,7 +14,6 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-
 		"commands": [
 			{
 				"command": "will.selection",
@@ -28,16 +27,26 @@
 				"command": "will.askQuestion",
 				"title": "选择要设置图片的代码段2"
 			}
-
 		],
 		"keybindings": [
 			{
 				"command": "will.selection",
-				"key": "cmd+v"
+				"key": "alt+z"
 			}
-		
-		]
+		],
+		"configuration": {
+			"type": "object",
+			"title": "willPasteImg",
+			"properties": {
+				"will.imgSavePath": {
+				  "type": "string",
+				  "default": "rgba(255, 255, 0, 0.05)",
+				  "description": "%will.imgSavePath%"
+				}
+			}
+		}
 	},
+	
 	"scripts": {
 		"vscode:prepublish": "npm run package",
 		"compile": "webpack",

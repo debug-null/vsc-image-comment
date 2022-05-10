@@ -60,7 +60,7 @@ function getPasteImage(imagePath: string) : Promise<string[]>{
                 // console.debug('exit', code, signal);
             });
             powershell.stdout.on('data', (data) => {
-                data.toString().split('\n').forEach(d => output += (d.indexOf('Active code page:') < 0 ? d + '\n' : ''));
+                data.toString().split('\n').forEach((d: string | string[]) => output += (d.indexOf('Active code page:') < 0 ? d + '\n' : ''));
                 clearTimeout(timer);
                 timer = setTimeout(() => powershell.kill(), 2000);
             });
@@ -83,9 +83,7 @@ function getPasteImage(imagePath: string) : Promise<string[]>{
             });
         } else {
             // Linux
-
             const scriptPath = path.join(__dirname, '..', '..' , 'script/linux.sh');
-
             let ascript = spawn('sh', [scriptPath, imagePath]);
             ascript.on('error', (e: any) => {
                 vscode.window.showErrorMessage(e);
