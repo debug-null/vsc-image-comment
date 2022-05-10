@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import WillComments from "../lib/will";
 import utils from "../lib/utils";
 import * as path from "path";
+const fse = require("fs-extra");
 
 let willComments = (context: vscode.ExtensionContext) => {
   let command = vscode.commands.registerTextEditorCommand("will.selection", async function (textEditor, edit) {
@@ -22,19 +23,26 @@ let willComments = (context: vscode.ExtensionContext) => {
       let newSavePath = path.resolve(savePath, `pic_${new Date().getTime()}.png`);
       let pasteImg = [];
       try {
-         pasteImg = await utils.getPasteImage(newSavePath);
+        pasteImg = await utils.getPasteImage(newSavePath);
       } catch (error) {
         console.log("🚀 ~ file: extension.ts ~ line 63 ~ command ~ error", error);
         return;
       }
-      if(!pasteImg) {return;};
+      if (!pasteImg) {
+        return;
+      }
 
-     
       let imagePath = pasteImg[0];
-      
-      const folders = vscode.workspace.workspaceFolders;
-      console.log("🚀 ~ file: will-comments.ts ~ line 36 ~ command ~ folders", folders);
 
+      const rootStorgeDir = utils.getRootDir();
+      if (!rootStorgeDir || !imagePath || imagePath === "no image") {
+        return;
+      }
+
+      fse.ensureDirSync(rootStorgeDir);
+      let imgSaveName = `${start.line}#${start.character}#${end.line}#${end.character}`;
+      let targetPath = path.join(rootStorgeDir, imgSaveName + ".png");
+      fse.copySync(imagePath, targetPath);
 
       let decorationType = vscode.window.createTextEditorDecorationType({
         //   backgroundColor: "#f00",
