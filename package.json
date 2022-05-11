@@ -1,5 +1,5 @@
 {
-	"name": "pseudo",
+	"name": "will-paste-img",
 	"displayName": "will-paste-img",
 	"description": "will-paste img",
 	"version": "0.0.1",
@@ -14,20 +14,7 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "will.selection",
-				"title": "菜单栏测试22"
-			},
-			{
-				"command": "pseudo.helloWorld",
-				"title": "Hello World"
-			},
-			{
-				"command": "will.askQuestion",
-				"title": "选择要设置图片的代码段2"
-			}
-		],
+		"commands": [],
 		"keybindings": [
 			{
 				"command": "will.selection",

@@ -14,7 +14,7 @@ let willComments = (context: vscode.ExtensionContext) => {
       const { start, end } = editor.selection;
       console.log("🚀 ~ file: will-comments.ts ~ line 11 ~ command ~ start, end", start, end);
       if (start.line === end.line && start.character === end.character) {
-        //   未选中任何字符
+        // 未选中任何字符
         return;
       }
 
@@ -24,8 +24,9 @@ let willComments = (context: vscode.ExtensionContext) => {
       let pasteImg = [];
       try {
         pasteImg = await utils.getPasteImage(newSavePath);
+        console.log("🚀 ~ file: will-comments.ts ~ line 27 ~ command ~ pasteImg", pasteImg);
       } catch (error) {
-        console.log("🚀 ~ file: extension.ts ~ line 63 ~ command ~ error", error);
+        console.error("🚀 ~ file: extension.ts ~ line 63 ~ command ~ error", error);
         return;
       }
       if (!pasteImg) {
@@ -36,30 +37,28 @@ let willComments = (context: vscode.ExtensionContext) => {
 
       const rootStorgeDir = utils.getRootDir();
       if (!rootStorgeDir || !imagePath || imagePath === "no image") {
+        console.info("剪切板无图片数据");
         return;
       }
 
       fse.ensureDirSync(rootStorgeDir);
-      let imgSaveName = `${start.line}#${start.character}#${end.line}#${end.character}`;
-      let targetPath = path.join(rootStorgeDir, imgSaveName + ".png");
+      let imgSaveName = `${start.line}#${start.character}#${end.line}#${end.character}.png`;
+      let targetPath = path.join(rootStorgeDir, imgSaveName);
       fse.copySync(imagePath, targetPath);
 
-      let decorationType = vscode.window.createTextEditorDecorationType({
-        //   backgroundColor: "#f00",
-        border: "1px solid red;",
-        outline: "#00FF00 dotted"
-        // gutterIconPath: context.asAbsolutePath("images/icon.png")
-      });
-      /**
-       *  vscode.Range
-       * @param startLine 开始的行数
-       * @param startCharacter 从开始行数的第几个字符开始.
-       * @param endLine 结束的行数.
-       * @param endCharacter 从结束行数的第几个字符结束.
-       */
-      editor.setDecorations(decorationType, [new vscode.Range(start.line, start.character, end.line, end.character)]);
+      const rangeArr = [
+        {
+          filePath: path.resolve(rootStorgeDir, encodeURIComponent(imgSaveName)),
+          sl: +start.line,
+          sc: +start.character,
+          el: +end.line,
+          ec: +end.character
+        }
+      ];
+      utils.createTip(rangeArr);
     }
   });
   context.subscriptions.push(command);
 };
+
 module.exports = willComments;

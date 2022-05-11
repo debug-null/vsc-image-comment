@@ -109,7 +109,7 @@ function getPasteImage(imagePath: string): Promise<string[]> {
 }
 
 /**
- * 
+ *
  * @returns 图片存储目录
  */
 function getRootDir() {
@@ -122,4 +122,48 @@ function getRootDir() {
   return path.join(projectRoot, ".vscode", "will-paste-img");
 }
 
-export default { getPasteImage, getTmpFolder,getRootDir };
+interface RangeType {
+  filePath: string;
+  sl: number;
+  sc: number;
+  el: number;
+  ec: number;
+}
+
+function createTip(rangeArr: RangeType[]) {
+  console.log("🚀 ~ file: utils.ts ~ line 134 ~ createTip ~ rangeArr", rangeArr);
+  /**
+   *  vscode.Range
+   * @param startLine 开始的行数
+   * @param startCharacter 从开始行数的第几个字符开始.
+   * @param endLine 结束的行数.
+   * @param endCharacter 从结束行数的第几个字符结束.
+   */
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return;
+  }
+  const gutterProps = rangeArr.map((range: RangeType) => {
+    const markdown = new vscode.MarkdownString(`<img src='${range.filePath}' width="100%" height="100%"/>`);
+
+    markdown.isTrusted = true;
+    markdown.supportHtml = true;
+
+    return {
+      range: new vscode.Range(range.sl, range.sc, range.el, range.ec),
+      hoverMessage: markdown
+    };
+  });
+
+  let decorationType = vscode.window.createTextEditorDecorationType({
+    // border: "1px solid red;",
+    outline: "2px #00FF00 dotted",
+    borderRadius: "2px",
+    borderSpacing: "10"
+    // gutterIconPath: context.asAbsolutePath("images/icon.png")
+  });
+
+  editor.setDecorations(decorationType, gutterProps);
+}
+
+export default { getPasteImage, getTmpFolder, getRootDir, createTip };
