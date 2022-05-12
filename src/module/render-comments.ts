@@ -10,7 +10,6 @@ interface RangeType {
   el: number;
   ec: number;
 }
-
 const renderComments = (context: vscode.ExtensionContext) => {
   const rootStorgeDir = utils.getRootDir();
   if (!rootStorgeDir) {

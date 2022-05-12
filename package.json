@@ -1,10 +1,11 @@
 {
-	"name": "will-paste-img",
-	"displayName": "will-paste-img",
-	"description": "will-paste img",
+	"name": "image-comment",
+	"displayName": "image-comment",
+	"description": "Add image comments to any of your code",
 	"version": "0.0.1",
+	"publisher": "pseudo",
 	"engines": {
-		"vscode": "^1.35.0"
+		"vscode": "^1.67.0"
 	},
 	"categories": [
 		"Other"
@@ -12,6 +13,11 @@
 	"activationEvents": [
 		"*"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/debug-null/vsc-image-comment.git"
+	},
+	"icon": "images/icon.png",
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [],
