@@ -117,9 +117,14 @@ function getRootDir() {
   if (!folders || !folders.length) {
     return null;
   }
+  const config = vscode.workspace.getConfiguration("ImageComment");
 
-  let projectRoot = folders[0].uri.fsPath;
-  return path.join(projectRoot, ".vscode", "will-paste-img");
+  if (config.imgSavePath) {
+    return config.imgSavePath;
+  } else {
+    let projectRoot = folders[0].uri.fsPath;
+    return path.join(projectRoot, ".vscode", pkg.name);
+  }
 }
 
 interface RangeType {

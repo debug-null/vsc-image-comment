@@ -1,10 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { TextDecoder, TextEncoder } from "util";
-import * as path from "path";
-import * as fs from "fs";
-import utils from "./lib/utils";
 
 /**
  * 此生命周期方法在插件激活时执行
@@ -15,7 +11,6 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
 
   require("./module/will-comments")(context);
-
   require("./module/render-comments")(context);
 }
 

@@ -3,13 +3,7 @@ import * as vscode from "vscode";
 import utils from "../lib/utils";
 const fse = require("fs-extra");
 
-interface RangeType {
-  filePath: string;
-  sl: number;
-  sc: number;
-  el: number;
-  ec: number;
-}
+
 const renderComments = (context: vscode.ExtensionContext) => {
   const rootStorgeDir = utils.getRootDir();
   if (!rootStorgeDir) {

@@ -1,8 +1,9 @@
 {
 	"name": "image-comment",
-	"displayName": "image-comment",
+	"displayName": "image comment",
 	"description": "Add image comments to any of your code",
-	"version": "0.0.1",
+	"keywords": ["comment","paste comment", "phote annotate", "annotate"],
+	"version": "1.0.0",
 	"publisher": "pseudo",
 	"engines": {
 		"vscode": "^1.67.0"
@@ -10,8 +11,9 @@
 	"categories": [
 		"Other"
 	],
+	"license": "MIT",
 	"activationEvents": [
-		"*"
+		"onStartupFinished"
 	],
 	"repository": {
 		"type": "git",
@@ -29,11 +31,10 @@
 		],
 		"configuration": {
 			"type": "object",
-			"title": "willPasteImg",
+			"title": "Image comment",
 			"properties": {
-				"will.imgSavePath": {
+				"ImageComment.imgSavePath": {
 					"type": "string",
-					"default": "rgba(255, 255, 0, 0.05)",
 					"description": "%will.imgSavePath%"
 				}
 			}

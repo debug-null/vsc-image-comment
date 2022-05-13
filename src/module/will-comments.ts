@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import WillComments from "../lib/will";
 import utils from "../lib/utils";
 import * as path from "path";
 const fse = require("fs-extra");
@@ -12,7 +11,6 @@ let willComments = (context: vscode.ExtensionContext) => {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
       const { start, end } = editor.selection;
-      console.log("🚀 ~ file: will-comments.ts ~ line 11 ~ command ~ start, end", start, end);
       if (start.line === end.line && start.character === end.character) {
         // 未选中任何字符
         return;
@@ -24,7 +22,6 @@ let willComments = (context: vscode.ExtensionContext) => {
       let pasteImg = [];
       try {
         pasteImg = await utils.getPasteImage(newSavePath);
-        console.log("🚀 ~ file: will-comments.ts ~ line 27 ~ command ~ pasteImg", pasteImg);
       } catch (error) {
         console.error("🚀 ~ file: extension.ts ~ line 63 ~ command ~ error", error);
         return;
