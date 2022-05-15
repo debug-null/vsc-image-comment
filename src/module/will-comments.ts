@@ -4,7 +4,7 @@ import * as path from "path";
 const fse = require("fs-extra");
 
 let willComments = (context: vscode.ExtensionContext) => {
-  let command = vscode.commands.registerTextEditorCommand("will.selection", async function (textEditor, edit) {
+  let command = vscode.commands.registerTextEditorCommand("comment.selection", async function (textEditor, edit) {
     const text = textEditor.document.getText(textEditor.selection);
     console.log("选中的文本是:", text);
 

@@ -2,7 +2,12 @@
 	"name": "image-comment",
 	"displayName": "image comment",
 	"description": "Add image comments to any of your code",
-	"keywords": ["comment","paste comment", "phote annotate", "annotate"],
+	"keywords": [
+		"comment",
+		"paste comment",
+		"phote annotate",
+		"annotate"
+	],
 	"version": "1.0.0",
 	"publisher": "pseudo",
 	"engines": {
@@ -22,10 +27,15 @@
 	"icon": "images/icon.png",
 	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": [],
+		"commands": [
+			{
+				"command": "comment.remove",
+				"title": "%comment.remove%"
+			}
+		],
 		"keybindings": [
 			{
-				"command": "will.selection",
+				"command": "comment.selection",
 				"key": "alt+z"
 			}
 		],
@@ -35,7 +45,7 @@
 			"properties": {
 				"ImageComment.imgSavePath": {
 					"type": "string",
-					"description": "%will.imgSavePath%"
+					"description": "%comment.imgSavePath%"
 				}
 			}
 		}
@@ -52,6 +62,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
+		"@types/fs-extra": "^9.0.13",
 		"@types/glob": "^7.2.0",
 		"@types/mocha": "^9.1.1",
 		"@types/node": "14.x",

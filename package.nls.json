@@ -1,3 +1,4 @@
 {
-    "will.imgSavePath": "图片存储目录，默认为当前工作区 .vscode/image-comment目录下"
+    "comment.imgSavePath": "图片存储目录，默认为当前工作区 .vscode/image-comment目录下",
+    "comment.remove":"删除图片注释"
 }

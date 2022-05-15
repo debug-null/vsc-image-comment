@@ -136,7 +136,6 @@ interface RangeType {
 }
 
 function createTip(rangeArr: RangeType[]) {
-  console.log("🚀 ~ file: utils.ts ~ line 134 ~ createTip ~ rangeArr", rangeArr);
   /**
    *  vscode.Range
    * @param startLine 开始的行数
@@ -153,6 +152,11 @@ function createTip(rangeArr: RangeType[]) {
 
     markdown.isTrusted = true;
     markdown.supportHtml = true;
+
+    const commentCommandUri = vscode.Uri.parse(`command:comment.remove?${encodeURIComponent(JSON.stringify({
+      range
+    }))}`);
+    markdown.appendMarkdown(`[删除图片注释](${commentCommandUri})`);
 
     return {
       range: new vscode.Range(range.sl, range.sc, range.el, range.ec),

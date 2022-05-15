@@ -12,6 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   require("./module/will-comments")(context);
   require("./module/render-comments")(context);
+  require("./module/remove-comments")(context);
 }
 
 // 当插件被设置为无效时执行此生命周期钩子
