@@ -2,8 +2,10 @@ import * as vscode from "vscode";
 import utils from "../lib/utils";
 import * as path from "path";
 const fse = require("fs-extra");
+import { Decorator } from "../lib/decorator";
 
-let willComments = (context: vscode.ExtensionContext) => {
+
+let willComments = (context: vscode.ExtensionContext, decorator:Decorator) => {
   let command = vscode.commands.registerTextEditorCommand("comment.selection", async function (textEditor, edit) {
     const text = textEditor.document.getText(textEditor.selection);
     console.log("选中的文本是:", text);
@@ -43,16 +45,9 @@ let willComments = (context: vscode.ExtensionContext) => {
       let targetPath = path.join(rootStorgeDir, imgSaveName);
       fse.copySync(imagePath, targetPath);
 
-      const rangeArr = [
-        {
-          filePath: path.resolve(rootStorgeDir, encodeURIComponent(imgSaveName)),
-          sl: +start.line,
-          sc: +start.character,
-          el: +end.line,
-          ec: +end.character
-        }
-      ];
-      utils.createTip(rangeArr);
+
+
+      decorator.render();
     }
   });
   context.subscriptions.push(command);

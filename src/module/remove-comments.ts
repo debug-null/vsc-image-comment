@@ -2,6 +2,7 @@ import path = require("path");
 import * as vscode from "vscode";
 import utils from "../lib/utils";
 import * as fse from "fs-extra";
+import { Decorator } from "../lib/decorator";
 
 interface RangeType {
   filePath: string;
@@ -11,7 +12,7 @@ interface RangeType {
   ec: number;
 }
 
-const removeComments = (contenxt: vscode.ExtensionContext) => {
+const removeComments = (contenxt: vscode.ExtensionContext, decorator: Decorator) => {
   vscode.commands.registerCommand("comment.remove", async (params) => {
     const { range } = params;
     if (!range || !range.filePath) {
@@ -23,9 +24,7 @@ const removeComments = (contenxt: vscode.ExtensionContext) => {
     if (!editor) {
       return;
     }
-    // TODO: 不知该如何删除选中行的样式
-    let decorationType = vscode.window.createTextEditorDecorationType({});
-    editor.setDecorations(decorationType, [new vscode.Range(range.sl, range.sc, range.el, range.ec)]);
+    decorator.render();
   });
 };
 

@@ -1,14 +1,15 @@
 {
-	"name": "image-comment",
-	"displayName": "image comment",
+	"name": "paste-image-comment",
+	"displayName": "Paste image comment",
 	"description": "Add image comments to any of your code",
 	"keywords": [
+		"Paste Image comment",
 		"comment",
 		"paste comment",
 		"phote annotate",
 		"annotate"
 	],
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publisher": "pseudo",
 	"engines": {
 		"vscode": "^1.67.0"
@@ -35,15 +36,15 @@
 		],
 		"keybindings": [
 			{
-				"command": "comment.selection",
+				"command": "PasteImageComment.selection",
 				"key": "alt+z"
 			}
 		],
 		"configuration": {
 			"type": "object",
-			"title": "Image comment",
+			"title": "PasteImageComment",
 			"properties": {
-				"ImageComment.imgSavePath": {
+				"PasteImageComment.imgSavePath": {
 					"type": "string",
 					"description": "%comment.imgSavePath%"
 				}
