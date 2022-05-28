@@ -1,4 +1,5 @@
 {
-    "comment.imgSavePath": "图片存储目录，默认为当前工作区 .vscode/image-comment目录下",
-    "comment.remove":"删除图片注释"
+    "PasteImageComment.imgSavePath": "The image storage directory is the current workspace by default Under vscode / image comment directory",
+    "PasteImageComment.remove":"Remove",
+    "PasteImageComment.paste": "Paste image comment"
 }

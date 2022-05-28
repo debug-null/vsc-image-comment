@@ -75,13 +75,13 @@ export class Decorator {
       markdown.supportHtml = true;
 
       const commentCommandUri = vscode.Uri.parse(
-        `command:comment.remove?${encodeURIComponent(
+        `command:PasteImageComment.remove?${encodeURIComponent(
           JSON.stringify({
             range
           })
         )}`
       );
-      markdown.appendMarkdown(`[删除图片注释](${commentCommandUri})`);
+      markdown.appendMarkdown(`[Remove](${commentCommandUri})`);
 
       return {
         range: new vscode.Range(range.sl, range.sc, range.el, range.ec),

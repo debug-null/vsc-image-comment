@@ -13,7 +13,7 @@ interface RangeType {
 }
 
 const removeComments = (contenxt: vscode.ExtensionContext, decorator: Decorator) => {
-  vscode.commands.registerCommand("comment.remove", async (params) => {
+  vscode.commands.registerCommand("PasteImageComment.remove", async (params) => {
     const { range } = params;
     if (!range || !range.filePath) {
       return;

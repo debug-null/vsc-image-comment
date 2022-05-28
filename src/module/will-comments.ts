@@ -6,7 +6,7 @@ import { Decorator } from "../lib/decorator";
 
 
 let willComments = (context: vscode.ExtensionContext, decorator:Decorator) => {
-  let command = vscode.commands.registerTextEditorCommand("comment.selection", async function (textEditor, edit) {
+  let command = vscode.commands.registerTextEditorCommand("PasteImageComment.paste", async function (textEditor, edit) {
     const text = textEditor.document.getText(textEditor.selection);
     console.log("选中的文本是:", text);
 

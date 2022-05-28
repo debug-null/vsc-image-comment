@@ -8,8 +8,8 @@ Paste the image directly from the clipboard into any selected character segment 
 
 Select the text segment in the pasteboard and press Alt + Z
 
-1. Grab screen to clipboard
-2. Command+v, just paste the image
+1. capture the screen to the clipboard
+2. for Mac, use command+v / for windows, use ctrl+alt+v and paste the image
 
 
 --- 
@@ -25,4 +25,4 @@ Select the text segment in the pasteboard and press Alt + Z
 粘贴板中选中文本片段，按下 alt+z 即可.
 
 1. 将屏幕铺捉到剪贴板
-2. command+V，粘贴图像即可
+2. Mac 使用 command+v / Windows 使用 ctrl+alt+v，粘贴图像即可

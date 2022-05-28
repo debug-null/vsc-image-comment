@@ -30,14 +30,20 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "comment.remove",
-				"title": "%comment.remove%"
+				"command": "PasteImageComment.remove",
+				"title": "%PasteImageComment.remove%"
+			},
+			{
+				"command": "PasteImageComment.paste",
+				"title": "%PasteImageComment.paste%"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "PasteImageComment.selection",
-				"key": "alt+z"
+				"command": "PasteImageComment.paste",
+				"key": "ctrl+alt+v",
+				"mac": "cmd+alt+v",
+				"when": "editorTextFocus"
 			}
 		],
 		"configuration": {
@@ -46,7 +52,7 @@
 			"properties": {
 				"PasteImageComment.imgSavePath": {
 					"type": "string",
-					"description": "%comment.imgSavePath%"
+					"description": "%PasteImageComment.imgSavePath%"
 				}
 			}
 		}
